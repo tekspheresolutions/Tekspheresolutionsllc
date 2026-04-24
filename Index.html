@@ -3,64 +3,736 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TekSphere Solutions</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>TekSphere Solutions LLC | IT Handyman for Small Businesses</title>
+  <meta name="description" content="TekSphere Solutions LLC provides practical IT support, computer troubleshooting, network setup, printer help, cybersecurity basics, cloud backups, and automation for small businesses." />
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-soft: #0d1b2f;
+      --card: rgba(255, 255, 255, 0.07);
+      --card-strong: rgba(255, 255, 255, 0.11);
+      --text: #f8fafc;
+      --muted: #b6c2d2;
+      --cyan: #35d7ff;
+      --blue: #4f8cff;
+      --green: #62f0b3;
+      --border: rgba(255, 255, 255, 0.12);
+      --shadow: 0 24px 60px rgba(0, 0, 0, 0.35);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(53, 215, 255, 0.22), transparent 34%),
+        radial-gradient(circle at top right, rgba(79, 140, 255, 0.18), transparent 32%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      background: rgba(7, 17, 31, 0.88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--cyan), var(--blue));
+      color: #05101f;
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      box-shadow: 0 10px 28px rgba(53, 215, 255, 0.25);
+    }
+
+    .brand-title {
+      font-size: 1.1rem;
+      font-weight: 900;
+      letter-spacing: 0.3px;
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 0.86rem;
+      margin-top: -2px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-cta {
+      color: #05101f !important;
+      background: var(--cyan);
+      font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 999px;
+      box-shadow: 0 10px 24px rgba(53, 215, 255, 0.22);
+    }
+
+    .hero {
+      padding: 82px 0 70px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 54px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      color: #d9fbff;
+      border: 1px solid rgba(53, 215, 255, 0.35);
+      background: rgba(53, 215, 255, 0.1);
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.55rem, 6vw, 5.25rem);
+      line-height: 0.97;
+      letter-spacing: -2.5px;
+      max-width: 760px;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.15rem;
+      margin-top: 24px;
+      max-width: 680px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 32px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 20px;
+      border-radius: 16px;
+      font-weight: 900;
+      transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      color: #05101f;
+      background: linear-gradient(135deg, var(--cyan), var(--green));
+      box-shadow: 0 18px 36px rgba(53, 215, 255, 0.18);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text);
+    }
+
+    .quick-facts {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 34px;
+      max-width: 620px;
+    }
+
+    .quick-facts div,
+    .glass-card,
+    .service-card,
+    .why-card,
+    .price-card,
+    .contact-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .quick-facts div {
+      padding: 14px 16px;
+      color: #dce7f5;
+      font-weight: 700;
+    }
+
+    .glass-card {
+      padding: 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: -80px -80px auto auto;
+      width: 220px;
+      height: 220px;
+      background: rgba(53, 215, 255, 0.19);
+      border-radius: 999px;
+      filter: blur(4px);
+    }
+
+    .dashboard {
+      position: relative;
+      border: 1px solid var(--border);
+      background: rgba(7, 17, 31, 0.76);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .dashboard h2 {
+      font-size: 1.7rem;
+      line-height: 1.2;
+      margin-top: 10px;
+    }
+
+    .mini-label {
+      color: var(--cyan);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 0.75rem;
+    }
+
+    .task-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .task {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 15px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #dce7f5;
+    }
+
+    .check {
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      background: rgba(98, 240, 179, 0.18);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      font-weight: 900;
+    }
+
+    section {
+      padding: 74px 0;
+    }
+
+    .section-heading {
+      max-width: 780px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.08;
+      letter-spacing: -1px;
+      margin-top: 8px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      margin-top: 14px;
+      font-size: 1.06rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .service-card {
+      padding: 24px;
+      transition: transform 0.18s ease, background 0.18s ease;
+    }
+
+    .service-card:hover {
+      transform: translateY(-4px);
+      background: var(--card-strong);
+    }
+
+    .service-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(53, 215, 255, 0.12);
+      border: 1px solid rgba(53, 215, 255, 0.22);
+      margin-bottom: 18px;
+      font-size: 1.35rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.18rem;
+      margin-bottom: 10px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 34px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.045);
+      border-radius: 28px;
+      padding: 30px;
+    }
+
+    .panel p {
+      color: var(--muted);
+      margin-top: 12px;
+    }
+
+    .why-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .why-card {
+      padding: 20px;
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .price-card {
+      padding: 26px;
+    }
+
+    .price-card.featured {
+      border-color: rgba(53, 215, 255, 0.42);
+      background: rgba(53, 215, 255, 0.09);
+    }
+
+    .price-card h3 {
+      font-size: 1.2rem;
+    }
+
+    .price {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin: 16px 0 8px;
+      letter-spacing: -1px;
+    }
+
+    .price span {
+      font-size: 0.95rem;
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .price-card p,
+    .price-card li {
+      color: var(--muted);
+    }
+
+    .price-card ul {
+      margin-top: 18px;
+      padding-left: 20px;
+    }
+
+    .price-card li {
+      margin: 8px 0;
+    }
+
+    .contact-section {
+      padding-bottom: 88px;
+    }
+
+    .contact-wrap {
+      border: 1px solid rgba(53, 215, 255, 0.28);
+      background: linear-gradient(135deg, rgba(53, 215, 255, 0.13), rgba(79, 140, 255, 0.08));
+      border-radius: 34px;
+      padding: 34px;
+      display: grid;
+      grid-template-columns: 1fr 0.86fr;
+      gap: 28px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+
+    .contact-wrap h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.06;
+      letter-spacing: -1px;
+    }
+
+    .contact-wrap p {
+      color: #d4dfed;
+      margin-top: 14px;
+      font-size: 1.06rem;
+    }
+
+    .contact-card {
+      padding: 24px;
+      background: rgba(7, 17, 31, 0.78);
+    }
+
+    .contact-row {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .contact-row:last-child {
+      border-bottom: 0;
+    }
+
+    .contact-row small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 3px;
+    }
+
+    .contact-row strong {
+      font-size: 1.05rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.93rem;
+    }
+
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid,
+      .split,
+      .contact-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .hero {
+        padding-top: 52px;
+      }
+
+      h1 {
+        letter-spacing: -1.4px;
+      }
+
+      .quick-facts,
+      .services-grid,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contact-wrap {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <div class="logo-container">
-      <img src="TekSphereSolutionsLogo.png" alt="TekSphere Solutions Logo" class="logo" />
-      <h1 class="hero-title">TekSphere Solutions</h1>
-      <p class="tagline">Bringing IT Solutions to your Small Business, big or small.</p>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="TekSphere Solutions home">
+        <div class="logo-mark">TS</div>
+        <div>
+          <div class="brand-title">TekSphere Solutions LLC</div>
+          <div class="brand-subtitle">Your IT Handyman</div>
+        </div>
+      </a>
+      <nav class="nav-links" aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#contact" class="nav-cta">Get Help</a>
+      </nav>
     </div>
-    <nav>
-      <ul class="nav-links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
   </header>
 
-  <section id="hero" class="section hero">
-    <div class="hero-content">
-      <h2>Affordable, Powerful Chatbots & IT Solutions</h2>
-      <p>Boost productivity, streamline tasks, and enhance customer engagement.</p>
-    </div>
-  </section>
+  <main id="top">
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Small Business IT Support • Local Help • Practical Solutions</div>
+          <h1>Tech problems should not slow your business down.</h1>
+          <p>
+            TekSphere Solutions LLC helps small businesses fix computer issues, set up reliable office technology, clean up workflows, and protect the systems they depend on every day.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:13176431901">Call (317) 643-1901</a>
+            <a class="btn btn-secondary" href="mailto:bkinsey1978@gmail.com">Email TekSphere</a>
+          </div>
+          <div class="quick-facts">
+            <div>Computer troubleshooting</div>
+            <div>Wi-Fi & network setup</div>
+            <div>Printer & scanner help</div>
+            <div>Automation & workflow cleanup</div>
+          </div>
+        </div>
 
-  <section id="services" class="section services">
-    <h2>Our Services</h2>
-    <div class="service-grid">
-      <div class="service-card">
-        <h3>Chatbot Development</h3>
-        <p>Custom chatbot solutions for your website or social media, tailored to your business.</p>
+        <div class="glass-card" aria-label="TekSphere service summary">
+          <div class="dashboard">
+            <div class="mini-label">What We Do</div>
+            <h2>Dependable tech help without a full-time IT department.</h2>
+            <div class="task-list">
+              <div class="task"><span class="check">✓</span><span>Fix everyday computer, software, printer, and device issues.</span></div>
+              <div class="task"><span class="check">✓</span><span>Set up cleaner, safer, more reliable office technology.</span></div>
+              <div class="task"><span class="check">✓</span><span>Build simple systems that reduce repetitive manual work.</span></div>
+              <div class="task"><span class="check">✓</span><span>Explain solutions clearly, without confusing tech jargon.</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service-card">
-        <h3>Business Automation</h3>
-        <p>Streamline operations with affordable automation for small business needs.</p>
-      </div>
-      <div class="service-card">
-        <h3>Data Insights</h3>
-        <p>Turn raw data into smart decisions with simplified analytics and reporting.</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section id="about" class="section about">
-    <h2>About TekSphere</h2>
-    <p>Founded by Bret Kinsey under Brightforge Holdings LLC, TekSphere Solutions is built for small business owners seeking the edge of modern tech without the burden of high costs. We're passionate about empowering local businesses through accessible technology.</p>
-  </section>
+    <section id="services">
+      <div class="container">
+        <div class="section-heading">
+          <div class="mini-label">Services</div>
+          <h2>IT support built around real small-business needs.</h2>
+          <p>
+            Whether you run a shop, salon, restaurant, small office, or home-based business, TekSphere helps keep your technology simple, useful, and working.
+          </p>
+        </div>
 
-  <section id="contact" class="section contact">
-    <h2>Contact Us</h2>
-    <p>Email: <a href="mailto:brightforgeholdingsllc@gmail.com">brightforgeholdingsllc@gmail.com</a></p>
-    <p>Phone: <a href="tel:+13176431901">317-643-1901</a></p>
-    <p>Address: 58 Lions Creek Ct N, Noblesville, IN 46062</p>
-  </section>
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">💻</div>
+            <h3>Computer Troubleshooting</h3>
+            <p>Slow computers, software issues, login problems, updates, device errors, and general tech headaches diagnosed and fixed.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">📶</div>
+            <h3>Wi-Fi & Network Setup</h3>
+            <p>Routers, Wi-Fi coverage, office internet, shared devices, and basic network organization for smoother daily operations.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🖨️</div>
+            <h3>Printer & Scanner Support</h3>
+            <p>Printer installs, scanner setup, connection issues, shared printing, and office equipment that refuses to cooperate.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">☁️</div>
+            <h3>Cloud Backups & File Organization</h3>
+            <p>Clean up messy files, organize shared folders, and create backup habits so important business data is easier to find and safer to keep.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">🔐</div>
+            <h3>Cybersecurity Basics</h3>
+            <p>Practical help with passwords, account security, device protection, phishing awareness, and safer day-to-day business practices.</p>
+          </article>
+          <article class="service-card">
+            <div class="service-icon">⚙️</div>
+            <h3>Automation & Workflow Help</h3>
+            <p>Simple automations, spreadsheets, forms, file systems, and processes designed to save time and reduce repeated manual work.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container split">
+        <div class="panel">
+          <div class="mini-label">About TekSphere</div>
+          <h2>Small-business tech support with common sense.</h2>
+          <p>
+            A lot of small businesses do not need a massive IT contract. They need someone reliable who can show up, figure out the problem, explain the options, and get things moving again.
+          </p>
+          <p>
+            TekSphere Solutions LLC was built for that gap: practical technology support for business owners who need answers, not excuses.
+          </p>
+        </div>
+        <div class="why-list">
+          <div class="why-card"><span class="check">✓</span><div><strong>No corporate runaround.</strong><br><span style="color: var(--muted);">You get straightforward help focused on your actual business problem.</span></div></div>
+          <div class="why-card"><span class="check">✓</span><div><strong>Built for non-technical owners.</strong><br><span style="color: var(--muted);">Clear explanations, plain language, and practical recommendations.</span></div></div>
+          <div class="why-card"><span class="check">✓</span><div><strong>Flexible support.</strong><br><span style="color: var(--muted);">One-time visits, troubleshooting, setup projects, workflow cleanup, and ongoing help.</span></div></div>
+          <div class="why-card"><span class="check">✓</span><div><strong>Focused on value.</strong><br><span style="color: var(--muted);">Solutions that help save time, reduce downtime, and make daily work easier.</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="container">
+        <div class="section-heading">
+          <div class="mini-label">Simple Pricing</div>
+          <h2>Clear starting points for getting help.</h2>
+          <p>Pricing can be adjusted based on scope, travel, after-hours needs, and project size.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card featured">
+            <h3>Initial On-Site Visit</h3>
+            <div class="price">$195</div>
+            <p>Best for first-time customers, diagnosis, setup reviews, and getting a plan in place.</p>
+            <ul>
+              <li>On-site assessment</li>
+              <li>Problem diagnosis</li>
+              <li>Recommended next steps</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>Standard Support</h3>
+            <div class="price">$85 <span>/ hour</span></div>
+            <p>For troubleshooting, setup, software help, basic automation, and ongoing support.</p>
+            <ul>
+              <li>Computer and device help</li>
+              <li>Printer and network support</li>
+              <li>Workflow cleanup</li>
+            </ul>
+          </article>
+          <article class="price-card">
+            <h3>After-Hours Support</h3>
+            <div class="price">$145 <span>/ hour</span></div>
+            <p>For urgent or off-hours support when your business cannot wait until normal hours.</p>
+            <ul>
+              <li>Evening or urgent support</li>
+              <li>Business-critical issues</li>
+              <li>Availability may vary</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+      <div class="container contact-wrap">
+        <div>
+          <div class="mini-label">Get Help</div>
+          <h2>Ready to fix the tech issues holding your business back?</h2>
+          <p>
+            Call or email TekSphere Solutions LLC to describe what is going on. You will get practical next steps and a clear path toward getting it handled.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="tel:13176431901">Call Now</a>
+            <a class="btn btn-secondary" href="mailto:bkinsey1978@gmail.com?subject=TekSphere%20Service%20Request">Send Email</a>
+          </div>
+        </div>
+
+        <aside class="contact-card">
+          <div class="contact-row">
+            <small>Business</small>
+            <strong>TekSphere Solutions LLC</strong>
+          </div>
+          <div class="contact-row">
+            <small>Phone</small>
+            <strong><a href="tel:13176431901">(317) 643-1901</a></strong>
+          </div>
+          <div class="contact-row">
+            <small>Email</small>
+            <strong><a href="mailto:bkinsey1978@gmail.com">bkinsey1978@gmail.com</a></strong>
+          </div>
+          <div class="contact-row">
+            <small>Best Fit</small>
+            <strong>Small businesses without in-house IT</strong>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
 
   <footer>
-    <p>&copy; 2025 TekSphere Solutions. A Brightforge Holdings LLC company.</p>
+    <div class="container footer-row">
+      <div>© 2026 TekSphere Solutions LLC. All rights reserved.</div>
+      <div>IT support • Automation • Small business technology help</div>
+    </div>
   </footer>
 </body>
 </html>
